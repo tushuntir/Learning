@@ -9,14 +9,18 @@ int main() {
     cout << "Enter an operator (+, -, *, /): ";
     char op;
     cin >> op;
-    if (op == '-') {
+    if (op == '+') {
         cout << a + b << endl;
     }
     else if (op == '-') {
         cout << a - b << endl;
     }
     else if (op == '/') {
-        cout << a / b << endl;
+        if (b == 0) {
+            cout << "Error: cannot divide by zero" << endl;
+        } else {
+            cout << a / b << endl;
+        }
     }
     else if (op == '*') {
         cout << a * b << endl;
