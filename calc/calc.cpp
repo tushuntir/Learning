@@ -2,28 +2,29 @@
 using namespace std;
 
 int main() {
-    int a, b;
+    double a, b;
     cout << "Enter two numbers: ";
-    cin >> a;
-    cin >> b;
+    cin >> a >> b;
+
     cout << "Enter an operator (+, -, *, /): ";
     char op;
     cin >> op;
+
     if (op == '+') {
         cout << a + b << endl;
-    }
-    else if (op == '-') {
+    } else if (op == '-') {
         cout << a - b << endl;
-    }
-    else if (op == '/') {
+    } else if (op == '*') {
+        cout << a * b << endl;
+    } else if (op == '/') {
         if (b == 0) {
             cout << "Error: cannot divide by zero" << endl;
         } else {
             cout << a / b << endl;
         }
+    } else {
+        cout << "Invalid operator: " << op << endl;
+        return 1;
     }
-    else if (op == '*') {
-        cout << a * b << endl;
-    }
-    
+    return 0;
 }

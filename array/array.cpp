@@ -14,18 +14,19 @@ int main() {
         cin >> value;
         numbers.push_back(value);
     }
+
     int sum = 0;
-    int minVal = [0];
-    int maxVal = [0];
+    int minVal = numbers[0];
+    int maxVal = numbers[0];
 
     for (int i = 0; i < n; i++) {
         sum += numbers[i];
         if (numbers[i] < minVal) {
             minVal = numbers[i];
-        } 
-        if (maxVal > numbers[i]) {
+        }
+        if (numbers[i] > maxVal) {
             maxVal = numbers[i];
-        } 
+        }
     }
     cout << "Sum: " << sum << endl;
     cout << "Min: " << minVal << endl;

@@ -21,13 +21,14 @@ int main() {
         cin >> s.name;
 
         cout << "Enter score: ";
-
         cin >> s.score;
+
         if (s.score > 100 || s.score < 0) {
             cout << "Please enter a valid score (0-100)." << endl;
+            i--;
             continue;
         }
-        
+
         if (s.score >= 90) {
             s.grade = 'A';
         } else if (s.score >= 80) {
@@ -39,10 +40,15 @@ int main() {
         } else {
             s.grade = 'F';
         }
-        
+
         students.push_back(s);
     }
-    for (int i = 0; i < n; i++) {
-        cout << "Name: " << students[i].name << " " << endl << "Score: " << students[i].score << endl <<  "Grade: " << students[i].grade << endl;
+
+    cout << "\n---- Student Grades ----" << endl;
+    for (size_t i = 0; i < students.size(); i++) {
+        cout << "Name: " << students[i].name
+             << " | Score: " << students[i].score
+             << " | Grade: " << students[i].grade << endl;
     }
+    return 0;
 }

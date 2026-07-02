@@ -1,30 +1,50 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <sstream>
 using namespace std;
+
+bool isValidOctet(const string& s) {
+    if (s.empty() || s.length() > 3) return false;
+    for (char c : s) {
+        if (!isdigit(c)) return false;
+    }
+    int val = stoi(s);
+    return val >= 0 && val <= 255;
+}
+
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        cout << "please enter a valid ip address (192.168.1.1)";
+        cout << "Usage: ping <ip-address>" << endl;
         return 1;
     }
-    string ip  = argv[1];
+
+    string ip = argv[1];
     int dotCount = 0;
-    bool hasInvalidChar = false;
+    for (char c : ip) {
+        if (c == '.') dotCount++;
+    }
 
-    for (char &c : ip) {
-        if (c == '.') {
-            dotCount++;
+    if (dotCount != 3) {
+        cout << "Invalid IP format" << endl;
+        return 1;
+    }
+
+    stringstream ss(ip);
+    string octet;
+    int parts = 0;
+    while (getline(ss, octet, '.')) {
+        if (!isValidOctet(octet)) {
+            cout << "Invalid IP format" << endl;
+            return 1;
         }
-        else if (isalpha(c)) {
-            hasInvalidChar = true;
-        }
+        parts++;
     }
-    if (dotCount == 3 && !hasInvalidChar) {
-        cout << "Valid ip format!" << endl;
+
+    if (parts != 3) {
+        cout << "Invalid IP format" << endl;
+        return 1;
     }
-    else {
-        cout << "Invalid ip format" << endl;
-    }
+
+    cout << "Valid IP format!" << endl;
     return 0;
-
 }

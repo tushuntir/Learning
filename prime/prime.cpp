@@ -1,13 +1,27 @@
-#include <iostream> 
+#include <iostream>
 using namespace std;
 
 bool isPrime(int a) {
     if (a <= 1) {
         return false;
-    } else if (a % a == 0) {
-        return true;
     }
+    for (int i = 2; i * i <= a; i++) {
+        if (a % i == 0) {
+            return false;
+        }
+    }
+    return true;
 }
+
 int main() {
-    
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+
+    if (isPrime(num)) {
+        cout << num << " is prime." << endl;
+    } else {
+        cout << num << " is not prime." << endl;
+    }
+    return 0;
 }

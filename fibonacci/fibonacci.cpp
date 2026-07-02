@@ -1,14 +1,18 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main() {
-    string sentence;
-    cout << "Enter something: ";
-    getline(cin, sentence);
-    for (char letter : sentence) {
-        int count;
-        letter = 
-        letter += count;
+    int n;
+    cout << "How many Fibonacci numbers? ";
+    cin >> n;
+
+    int a = 0, b = 1;
+    for (int i = 0; i < n; i++) {
+        cout << a << " ";
+        int next = a + b;
+        a = b;
+        b = next;
     }
+    cout << endl;
+    return 0;
 }

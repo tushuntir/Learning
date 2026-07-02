@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <cctype>
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -12,12 +13,20 @@ int main(int argc, char* argv[]) {
         text = argv[1];
     }
 
-    string reversedText = text;
+    string cleaned;
+    for (char c : text) {
+        if (isalnum(c)) {
+            cleaned += tolower(c);
+        }
+    }
+
+    string reversedText = cleaned;
     reverse(reversedText.begin(), reversedText.end());
 
-    if (reversedText == text) {
-        cout << "The word " << text << " is a palindrome";
+    if (reversedText == cleaned) {
+        cout << "The text is a palindrome." << endl;
     } else {
-        cout << "It is not a palindrome";
+        cout << "It is not a palindrome." << endl;
     }
+    return 0;
 }
